@@ -1,38 +1,41 @@
-/* styles.css */
+/* Estilos generales para el cuerpo del documento */
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    display: flex; /* Usa el modelo de caja flexible */
+    justify-content: center; /* Centra horizontalmente los elementos */
+    align-items: center; /* Centra verticalmente los elementos */
+    height: 100vh; /* Altura del cuerpo al 100% del viewport */
+    margin: 0; /* Elimina el margen predeterminado */
+    font-family: Arial, sans-serif; /* Fuente Arial o sans-serif */
+    background-color: #f0f0f0; /* Color de fondo gris claro */
 }
 
+/* Estilos para el contenedor principal del escáner */
 .scanner-container {
-    text-align: center;
-    background: #ffffff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Centra el contenido horizontalmente */
+    background: #ffffff; /* Fondo blanco */
+    padding: 20px; /* Relleno de 20px alrededor del contenido */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
 }
 
 .qr-reader {
-    width: 300px;
-    height: 300px;
-    margin: 20px auto;
+    width: 80%; /* Cambiamos de un ancho fijo a un ancho del 80% del contenedor padre */
+    max-width: 400px; /* Establecemos un máximo de 400px para evitar que crezca demasiado en pantallas grandes */
+    height: auto; /* Permitimos que la altura se ajuste automáticamente al ancho */
+    margin: 20px auto; /* Mantenemos el margen 20px arriba/abajo y lo centramos horizontalmente */
 }
 
+
+/* Estilos para los resultados del escaneo de QR */
 #qr-reader-results {
-    margin-top: 20px;
-    font-size: 16px;
-    color: #333;
+    margin-top: 20px; /* Margen superior de 20px */
+    font-size: 16px; /* Tamaño de fuente 16px */
+    color: #333; /* Color de texto gris oscuro */
 }
 
-/* styles.css */
 /* Estilo para resaltar el área del escáner cuando detecta un código QR */
 .qr-reader.scanning {
-    border: 2px solid #42A5F5; /* Borde azul */
+    border: 2px solid #42A5F5; /* Borde azul de 2px */
     box-shadow: 0 0 10px rgba(66, 165, 245, 0.5); /* Sombra alrededor */
 }
 
