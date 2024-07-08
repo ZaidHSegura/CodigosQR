@@ -1,0 +1,39 @@
+/* styles.css */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.scanner-container {
+    text-align: center;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.qr-reader {
+    width: 300px;
+    height: 300px;
+    margin: 20px auto;
+}
+
+#qr-reader-results {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #333;
+}
+
+/* styles.css */
+/* Estilo para resaltar el área del escáner cuando detecta un código QR */
+.qr-reader.scanning {
+    border: 2px solid #42A5F5; /* Borde azul */
+    box-shadow: 0 0 10px rgba(66, 165, 245, 0.5); /* Sombra alrededor */
+}
+
+
