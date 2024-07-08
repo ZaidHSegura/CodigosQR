@@ -1,40 +1,50 @@
 /* Estilos generales para el cuerpo del documento */
 body {
-    display: flex; /* Usa el modelo de caja flexible */
-    justify-content: center; /* Centra horizontalmente los elementos */
-    align-items: center; /* Centra verticalmente los elementos */
-    height: 100vh; /* Altura del cuerpo al 100% del viewport */
-    margin: 0; /* Elimina el margen predeterminado */
-    font-family: Arial, sans-serif; /* Fuente Arial o sans-serif */
-    background-color: #f0f0f0; /* Color de fondo gris claro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
 }
 
 /* Estilos para el contenedor principal del escáner */
 .scanner-container {
-    text-align: center; /* Centra el contenido horizontalmente */
-    background: #ffffff; /* Fondo blanco */
-    padding: 20px; /* Relleno de 20px alrededor del contenido */
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    text-align: center;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Estilos para el elemento de la vista previa del escáner */
 .qr-reader {
+    position: relative; /* Posición relativa para contener elementos internos */
     width: 80%; /* Ancho del 80% del contenedor padre */
     max-width: 400px; /* Ancho máximo de 400px */
-    height: auto; /* Altura ajustable automáticamente */
     margin: 20px auto; /* Margen 20px arriba/abajo y centrado horizontalmente */
+    overflow: hidden; /* Ocultar contenido que exceda las dimensiones */
+    border: 2px dashed #ddd; /* Borde punteado gris claro */
+    border-radius: 8px; /* Bordes redondeados */
+}
+
+/* Estilo para el área de escaneo dentro del elemento de la vista previa */
+.qr-scan-area {
+    position: absolute; /* Posición absoluta dentro del contenedor */
+    top: 50%; /* Alinea desde la mitad superior */
+    left: 50%; /* Alinea desde la mitad izquierda */
+    transform: translate(-50%, -50%); /* Centra el área de escaneo */
+    width: 80%; /* Ancho del 80% del contenedor */
+    height: 80%; /* Altura del 80% del contenedor */
+    border: 2px solid #42A5F5; /* Borde sólido azul */
+    pointer-events: none; /* No permite eventos de puntero para esta área */
+    box-sizing: border-box; /* Incluye el borde en el tamaño total */
 }
 
 /* Estilos para los resultados del escaneo de QR */
 #qr-reader-results {
-    margin-top: 20px; /* Margen superior de 20px */
-    font-size: 16px; /* Tamaño de fuente 16px */
-    color: #333; /* Color de texto gris oscuro */
+    margin-top: 20px;
+    font-size: 16px;
+    color: #333;
 }
-
-/* Estilo para resaltar el área del escáner cuando detecta un código QR */
-.qr-reader.scanning {
-    outline: 3px solid #FF9800; /* Borde naranja */
-}
-
