@@ -18,13 +18,13 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
 }
 
+/* Estilos para el elemento de la vista previa del escáner */
 .qr-reader {
-    width: 80%; /* Cambiamos de un ancho fijo a un ancho del 80% del contenedor padre */
-    max-width: 400px; /* Establecemos un máximo de 400px para evitar que crezca demasiado en pantallas grandes */
-    height: auto; /* Permitimos que la altura se ajuste automáticamente al ancho */
-    margin: 20px auto; /* Mantenemos el margen 20px arriba/abajo y lo centramos horizontalmente */
+    width: 80%; /* Ancho del 80% del contenedor padre */
+    max-width: 400px; /* Ancho máximo de 400px */
+    height: auto; /* Altura ajustable automáticamente */
+    margin: 20px auto; /* Margen 20px arriba/abajo y centrado horizontalmente */
 }
-
 
 /* Estilos para los resultados del escaneo de QR */
 #qr-reader-results {
@@ -35,8 +35,6 @@ body {
 
 /* Estilo para resaltar el área del escáner cuando detecta un código QR */
 .qr-reader.scanning {
-    border: 2px solid #42A5F5; /* Borde azul de 2px */
-    box-shadow: 0 0 10px rgba(66, 165, 245, 0.5); /* Sombra alrededor */
+    outline: 3px solid #FF9800; /* Borde naranja */
 }
-
 
