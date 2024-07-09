@@ -48,4 +48,3 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log(Unable to start scanning, error: ${err});
     });
 });
-
