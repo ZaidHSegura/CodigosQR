@@ -14,7 +14,7 @@ function onScanSuccess(decodedText, decodedResult) {
     }
 
     // Resaltar visualmente el área del escáner cuando detecta un código QR
-    let qrReader = document.getElementById('qr-reader');
+    let qrReader = document.getElementById('qr-scan-area');
     qrReader.classList.add('scanning');
 
     // Quitar el resaltado después de un tiempo (opcional)
@@ -50,4 +50,3 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error(`No se pudo iniciar el escaneo: ${err}`);
     });
 });
-
