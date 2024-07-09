@@ -4,8 +4,8 @@ function onScanSuccess(decodedText, decodedResult) {
     document.getElementById('qr-reader-results').innerText = `Resultado: ${decodedText}`;
 
     // Mostrar recuadro de detección si hay coordenadas válidas
-    if (decodedResult && decodedResult.location) {
-        showQrCodeHighlight(decodedResult.location);
+    if (decodedResult && decodedResult.decodedText) {
+        showQrCodeHighlight(decodedResult.decodedText);
     }
 
     // Redirigir automáticamente al enlace escaneado (si es un enlace válido)
@@ -42,12 +42,12 @@ function showQrCodeHighlight(location) {
 
     const highlight = document.createElement('div');
     highlight.classList.add('qr-code-highlight');
-    
+
     // Calcular el tamaño y posición del recuadro en base a la ubicación del código QR
-    highlight.style.width = `${location.bottomRightCorner.x - location.topLeftCorner.x}px`;
-    highlight.style.height = `${location.bottomRightCorner.y - location.topLeftCorner.y}px`;
-    highlight.style.top = `${location.topLeftCorner.y}px`;
-    highlight.style.left = `${location.topLeftCorner.x}px`;
+    highlight.style.width = `${location.width}px`;
+    highlight.style.height = `${location.height}px`;
+    highlight.style.top = `${location.top}px`;
+    highlight.style.left = `${location.left}px`;
 
     document.getElementById('qr-reader').appendChild(highlight);
 }
@@ -66,7 +66,9 @@ document.addEventListener("DOMContentLoaded", () => {
         { facingMode: "environment" }, // Elegir cámara frontal o trasera
         {
             fps: 10, // Establecer la frecuencia de escaneo
-            qrbox: { width: 300, height: 300 } // Establecer las dimensiones del recuadro de escaneo
+            qrbox: { width: 300, height: 300 }, // Establecer las dimensiones del recuadro de escaneo
+            aspectRatio: 1.0, // Mantener la relación de aspecto
+            disableFlip: false // Deshabilitar el volteo de la cámara frontal
         },
         onScanSuccess,
         onScanFailure
@@ -74,4 +76,5 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log(`Unable to start scanning, error: ${err}`);
     });
 });
+
 

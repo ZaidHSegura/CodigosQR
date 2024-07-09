@@ -55,5 +55,6 @@ body {
     border: 2px solid green;
     box-sizing: border-box;
     pointer-events: none;
+    z-index: 1; /* Asegurar que el recuadro esté encima del video */
 }
 
