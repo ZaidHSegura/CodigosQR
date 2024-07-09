@@ -1,15 +1,10 @@
 // script.js
 function onScanSuccess(decodedText, decodedResult) {
-    // Maneja el resultado aquí.
     console.log(`Code matched = ${decodedText}`, decodedResult);
     document.getElementById('qr-reader-results').innerText = `Resultado: ${decodedText}`;
-    
-    // Resaltar visualmente el área del escáner cuando detecta un código QR
-    let qrReader = document.getElementById('qr-reader');
-    qrReader.classList.add('scanning');
 
-    // Mostrar recuadro de detección
-    if (decodedResult && decodedResult.decodedText && decodedResult.decodedText === decodedText) {
+    // Mostrar recuadro de detección si hay coordenadas válidas
+    if (decodedResult && decodedResult.location) {
         showQrCodeHighlight(decodedResult.location);
     }
 
@@ -24,30 +19,36 @@ function onScanSuccess(decodedText, decodedResult) {
 
     // Quitar el resaltado después de un tiempo (opcional)
     setTimeout(() => {
-        qrReader.classList.remove('scanning');
         hideQrCodeHighlight();
-        html5QrCode.start();
     }, 2000); // 2000 milisegundos (2 segundos)
 }
 
 function onScanFailure(error) {
-    // Maneja la falla del escaneo, usualmente es mejor ignorarlo y seguir escaneando.
     console.warn(`Code scan error = ${error}`);
 }
 
 // Función para validar si el texto escaneado es una URL válida
 function isValidUrl(text) {
-    // Implementa lógica para verificar si el texto es una URL válida
-    return text.startsWith("http://") || text.startsWith("https://");
+    try {
+        new URL(text);
+        return true;
+    } catch (e) {
+        return false;
+    }
 }
 
 function showQrCodeHighlight(location) {
+    hideQrCodeHighlight(); // Elimina cualquier recuadro anterior
+
     const highlight = document.createElement('div');
     highlight.classList.add('qr-code-highlight');
-    highlight.style.width = `${location.width}px`;
-    highlight.style.height = `${location.height}px`;
-    highlight.style.top = `${location.top}px`;
-    highlight.style.left = `${location.left}px`;
+    
+    // Calcular el tamaño y posición del recuadro en base a la ubicación del código QR
+    highlight.style.width = `${location.bottomRightCorner.x - location.topLeftCorner.x}px`;
+    highlight.style.height = `${location.bottomRightCorner.y - location.topLeftCorner.y}px`;
+    highlight.style.top = `${location.topLeftCorner.y}px`;
+    highlight.style.left = `${location.topLeftCorner.x}px`;
+
     document.getElementById('qr-reader').appendChild(highlight);
 }
 
