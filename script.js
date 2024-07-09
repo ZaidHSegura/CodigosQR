@@ -8,6 +8,9 @@ function onScanSuccess(decodedText, decodedResult) {
     let qrReader = document.getElementById('qr-reader');
     qrReader.classList.add('scanning');
 
+    // Mostrar recuadro de detección
+    showQrCodeHighlight(decodedResult.location);
+
     // Redirigir automáticamente al enlace escaneado (si es un enlace válido)
     if (isValidUrl(decodedText)) {
         window.location.href = decodedText;
@@ -18,6 +21,7 @@ function onScanSuccess(decodedText, decodedResult) {
     // Quitar el resaltado después de un tiempo (opcional)
     setTimeout(() => {
         qrReader.classList.remove('scanning');
+        hideQrCodeHighlight();
         html5QrCode.start();
     }, 2000); // 2000 milisegundos (2 segundos)
 }
@@ -31,6 +35,23 @@ function onScanFailure(error) {
 function isValidUrl(text) {
     // Implementa lógica para verificar si el texto es una URL válida
     return text.startsWith("http://") || text.startsWith("https://");
+}
+
+function showQrCodeHighlight(location) {
+    const highlight = document.createElement('div');
+    highlight.classList.add('qr-code-highlight');
+    highlight.style.width = `${location.width}px`;
+    highlight.style.height = `${location.height}px`;
+    highlight.style.top = `${location.top}px`;
+    highlight.style.left = `${location.left}px`;
+    document.getElementById('qr-reader').appendChild(highlight);
+}
+
+function hideQrCodeHighlight() {
+    const highlight = document.querySelector('.qr-code-highlight');
+    if (highlight) {
+        highlight.remove();
+    }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -48,4 +69,3 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log(`Unable to start scanning, error: ${err}`);
     });
 });
-
