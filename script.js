@@ -9,11 +9,15 @@ function onScanSuccess(decodedText, decodedResult) {
     qrReader.classList.add('scanning');
 
     // Mostrar recuadro de detección
-    showQrCodeHighlight(decodedResult.location);
+    if (decodedResult && decodedResult.decodedText && decodedResult.decodedText === decodedText) {
+        showQrCodeHighlight(decodedResult.location);
+    }
 
     // Redirigir automáticamente al enlace escaneado (si es un enlace válido)
     if (isValidUrl(decodedText)) {
-        window.location.href = decodedText;
+        setTimeout(() => {
+            window.location.href = decodedText;
+        }, 2000); // 2000 milisegundos (2 segundos)
     } else {
         console.log("El código escaneado no es un enlace válido.");
     }
@@ -69,3 +73,4 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log(`Unable to start scanning, error: ${err}`);
     });
 });
+
